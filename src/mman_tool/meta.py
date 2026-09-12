@@ -1,0 +1,4 @@
+
+VERSION = '0.1.2'
+TARGET_FILES_PATTERN = '.targets'
+COMMENT_PREFIX = '#'
