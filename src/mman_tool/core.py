@@ -26,6 +26,7 @@ def gen_the_needed_files_list(target_file_path=TARGET_FILES_PATTERN ,*,
                               work_dir:Path|None=None,
                               verbose:bool=False)->list[str]:
     """
+    generate the file paths that exists.
     生成存在的目标文件的路径. 
     """
     if work_dir is None:
@@ -59,7 +60,9 @@ def bench_copy(relative_file_paths: Collection[str],
                source_dir:Path|None=None, 
                verbose:bool=False):
     """
+    bench copy the files into target root, keeping the relative path
     批复制文件到目标目录下面
+    relative_file_paths: the relative path collection, of which the root is source_dir.
     """
     if source_dir is None:
         source_dir = Path.cwd()

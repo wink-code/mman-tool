@@ -9,7 +9,9 @@ def copy_file(source_path:Path,
               prefix:str=''):
 
     """
+    put a **file** object into the object directory
     将**文件**对象复制到目标目录下
+
     source_path: Path, 绝对路径
     """
     
