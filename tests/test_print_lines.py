@@ -2,10 +2,8 @@ from pathlib import Path
 # from sys import path
 
 # print(path)
-# from migrate_program import main
-import migrate_program.main as main
-# import migrate_program
-# print(migrate_program.__file__)
+# from mman import main
+import mman.core as main
 
 # print(dir(migrate_program))
 # migrate_program.src.main.gen_the_needed_files_list()

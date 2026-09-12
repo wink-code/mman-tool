@@ -1,4 +1,4 @@
-from migrate_program.main import copy_file
+from mman.utils.copy2 import copy_file
 from pathlib import Path
 
 

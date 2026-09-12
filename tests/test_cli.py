@@ -1,7 +1,7 @@
 # tests/test_cli.py
 
-from mman_tool.cli import main
-from mman_tool import core
+from mman.cli import main
+from mman import core
 
 
 def test_cli_end_to_end(tmp_path):
