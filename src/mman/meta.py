@@ -1,4 +1,9 @@
+from importlib.metadata import version, PackageNotFoundError
 
-VERSION = '0.1.2'
+try:
+    VERSION = version('mman-tool')
+except PackageNotFoundError:
+    VERSION = "0.0.0-dev"
+
 TARGET_FILES_PATTERN = '.targets'
 COMMENT_PREFIX = '#'
