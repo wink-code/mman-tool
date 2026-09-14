@@ -8,7 +8,9 @@ authors = [
     { name = "johnwink", email = "johnwink1998@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "myfind",
+]
 
 [project.scripts]
 mm = "mman.cli:main"
@@ -21,6 +23,9 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "mman"
 module-root = "src"
+
+[tool.uv.sources]
+myfind = { git = "https://github.com/wink-code/myfind.git" }
 
 [dependency-groups]
 dev = [
