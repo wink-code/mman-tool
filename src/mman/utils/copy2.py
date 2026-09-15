@@ -1,4 +1,5 @@
 import logging
+import shutil
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ def copy_file(source_path:Path,
     """
     
     try:
-        source_path.copy_into(target_dir)
+        shutil.copy2(source_path, target_dir)
     except Exception as e:
         logger.exception(e)
     if verbose:

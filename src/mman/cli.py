@@ -3,6 +3,7 @@ import sys
 from .core import gen_the_needed_files_list, bench_copy, VERSION, TARGET_FILES_PATTERN
 from argparse import ArgumentParser
 from myfind.core import MATCHED_FILE_NAME, find_matched_file_paths
+import logging
 
 
 def run(source_root: Path,
@@ -55,6 +56,8 @@ def main(argv: list[str]|None=None)->int:
 
     args = parser.parse_args(argv)
 
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
 
     try:
         run(source_root=args.source_root,

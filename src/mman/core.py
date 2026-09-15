@@ -69,6 +69,9 @@ def bench_copy(relative_file_paths: Collection[str],
     if not Path(target_root).exists():
         logger.error(f"'{target_root}' not found.")
         return 
+    if not target_root.is_dir():
+        logger.error("Path %r is not a directory", str(target_root))
+        return 
 
     total = len(relative_file_paths)
     for i, path in enumerate(relative_file_paths):
