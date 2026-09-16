@@ -15,11 +15,17 @@ def copy_file(source_path:Path,
 
     source_path: Path, 绝对路径
     """
-    
+    dst_file = Path(target_dir) / source_path.name
     try:
         shutil.copy2(source_path, target_dir)
-    except Exception as e:
-        logger.exception(e)
+    except PermissionError as e:
+        logger.warning(
+        "%sCould not preserve metadata for %s "
+        "(likely unsupported filesystem): %s. "
+        "Falling back to shutil.copyfile.",
+        prefix, source_path, e
+                )
+        shutil.copyfile(source_path, dst_file)
     if verbose:
         logger.info("%sSuccessfully copy '%s' into '%s'", prefix, source_path, target_dir)
 

@@ -46,10 +46,6 @@ def gen_the_needed_files_list(target_file_path=TARGET_FILES_PATTERN ,*,
             if verbose:
                 logger.warning(f"file '{abs_path}' doesn't exist.")
             continue
-        # if not (abs_path:=(work_dir / path)).exists() and verbose:
-        #     logger.warning(f"file '{abs_path} doesn't exist.")
-        #     continue 
-        # 此处的逻辑有问题, 只有当verbose=True的时候, 才会跳过.
         file_paths.append(path)
     return file_paths
 

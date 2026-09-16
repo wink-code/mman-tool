@@ -1,6 +1,6 @@
 [project]
 name = "mman-tool"
-version = "0.1.4"
+version = "0.1.4-beta"
 description = "mange your files migration"
 license = "MIT"
 readme = "README.md"
