@@ -18,14 +18,16 @@ def copy_file(source_path:Path,
     dst_file = Path(target_dir) / source_path.name
     try:
         shutil.copy2(source_path, target_dir)
-    except PermissionError as e:
+    except OSError as e:
         logger.warning(
-        "%sCould not preserve metadata for %s "
-        "(likely unsupported filesystem): %s. "
-        "Falling back to shutil.copyfile.",
+        "%scopy2 failed for %s (%s), retrying with shutil.copyfile.",
         prefix, source_path, e
                 )
-        shutil.copyfile(source_path, dst_file)
+        try:
+            shutil.copyfile(source_path, dst_file)
+        except OSError as fallback_error:
+            logger.error("%sCould not copy %s: %s", prefix, source_path, fallback_error)
+            return
     if verbose:
         logger.info("%sSuccessfully copy '%s' into '%s'", prefix, source_path, target_dir)
 
