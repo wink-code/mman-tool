@@ -1,9 +1,9 @@
-from pathlib import Path
 import logging
 from collections.abc import Collection
-from .utils.copy2 import copy_file
-from .meta import TARGET_FILES_PATTERN, COMMENT_PREFIX
+from pathlib import Path
 
+from .meta import COMMENT_PREFIX, TARGET_FILES_PATTERN
+from .utils.copy2 import copy_file
 
 logger = logging.getLogger(__name__)
 
@@ -18,20 +18,23 @@ logger = logging.getLogger(__name__)
 
 #### Third, match the target path on target machine, and then we copy them.
 
-## I need a protocol, which we name it `Mmana, in which the target objects are recored in and the parser will 
-## read it. 
+## I need a protocol, which we name it `Mmana, in which the target objects are recored in and the parser will
+## read it.
 
 
-def gen_the_needed_files_list(target_file_path=TARGET_FILES_PATTERN ,*, 
-                              work_dir:Path|None=None,
-                              verbose:bool=False)->list[str]:
+def gen_the_needed_files_list(
+    target_file_path=TARGET_FILES_PATTERN,
+    *,
+    work_dir: Path | None = None,
+    verbose: bool = False,
+) -> list[str]:
     """
     generate the file paths that exists.
-    生成存在的目标文件的路径. 
+    生成存在的目标文件的路径.
     """
     if work_dir is None:
-        work_dir = Path.cwd() 
-    
+        work_dir = Path.cwd()
+
     abs_target_path = work_dir / target_file_path
 
     if not abs_target_path.exists():
@@ -40,9 +43,9 @@ def gen_the_needed_files_list(target_file_path=TARGET_FILES_PATTERN ,*,
 
     file_paths = []
     for path in abs_target_path.read_text().splitlines():
-        if not path or path.rstrip().startswith(COMMENT_PREFIX): 
+        if not path or path.rstrip().startswith(COMMENT_PREFIX):
             continue
-        if not (abs_path:=(work_dir / path)).exists():
+        if not (abs_path := (work_dir / path)).exists():
             if verbose:
                 logger.warning(f"file '{abs_path}' doesn't exist.")
             continue
@@ -50,11 +53,13 @@ def gen_the_needed_files_list(target_file_path=TARGET_FILES_PATTERN ,*,
     return file_paths
 
 
-
-def bench_copy(relative_file_paths: Collection[str], 
-               target_root: Path, *, 
-               source_dir:Path|None=None, 
-               verbose:bool=False):
+def bench_copy(
+    relative_file_paths: Collection[str],
+    target_root: Path,
+    *,
+    source_dir: Path | None = None,
+    verbose: bool = False,
+):
     """
     bench copy the files into target root, keeping the relative path
     批复制文件到目标目录下面
@@ -64,10 +69,10 @@ def bench_copy(relative_file_paths: Collection[str],
         source_dir = Path.cwd()
     if not Path(target_root).exists():
         logger.error(f"'{target_root}' not found.")
-        return 
+        return
     if not target_root.is_dir():
         logger.error("Path %r is not a directory", str(target_root))
-        return 
+        return
 
     total = len(relative_file_paths)
     for i, path in enumerate(relative_file_paths):
@@ -75,7 +80,9 @@ def bench_copy(relative_file_paths: Collection[str],
         source_path = source_dir / path
         target_path = target_root / parent
         target_path.mkdir(exist_ok=True, parents=True)
-        copy_file(Path(source_path), target_path, verbose=verbose, prefix=f'[{i+1}/{total}] ')
-
-
-
+        copy_file(
+            Path(source_path),
+            target_path,
+            verbose=verbose,
+            prefix=f"[{i + 1}/{total}] ",
+        )

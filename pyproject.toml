@@ -36,3 +36,21 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (未使用变量, 未定义名字)
+    "I",    # isort (import 排序)
+    "UP",   # pyupgrade (旧语法升级)
+    "B",    # flake8.bugbear (常见bug模式)
+    "SIM",  # flake8-simplify (可简化的写法)
+    ]
+ignore = [
+    "E501", # 行太长, 交给formatter 处理
+    ]

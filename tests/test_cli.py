@@ -1,7 +1,6 @@
 # tests/test_cli.py
 
 from mman.cli import main
-from mman import core
 
 
 def test_cli_end_to_end(tmp_path):
@@ -15,11 +14,15 @@ def test_cli_end_to_end(tmp_path):
     (src / "sub").mkdir()
     (src / "sub" / "nuts").write_text("n")
 
-    main([
-        "--source-root", str(src),
-        "--target-root", str(dst),
-        "-v",
-        ])
+    main(
+        [
+            "--source-root",
+            str(src),
+            "--target-root",
+            str(dst),
+            "-v",
+        ]
+    )
 
     assert (dst / "apple").exists()
     assert (dst / "sub" / "nuts").exists()
