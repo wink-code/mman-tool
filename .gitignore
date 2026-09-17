@@ -12,3 +12,4 @@ wheels/
 todo.md
 tmp/
 .omo/
+pyrightconfig.json
