@@ -22,7 +22,7 @@ wheels = [
 
 [[package]]
 name = "mman-tool"
-version = "0.1.4b0"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "myfind" },
@@ -41,11 +41,8 @@ dev = [{ name = "pytest", specifier = ">=9.1.1" }]
 
 [[package]]
 name = "myfind"
-version = "0.1.2"
-source = { git = "https://github.com/wink-code/myfind.git#73fb8004de3dbf4ba86fb0691c01a47b18c8fb9d" }
-dependencies = [
-    { name = "pytest" },
-]
+version = "0.2.0"
+source = { git = "https://github.com/wink-code/myfind.git#085b1462e074b503b6f8d5b823b605c0321cf437" }
 
 [[package]]
 name = "packaging"
