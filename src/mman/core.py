@@ -2,7 +2,7 @@ from pathlib import Path
 import logging
 from collections.abc import Collection
 from .utils.copy2 import copy_file
-from .meta import *
+from .meta import TARGET_FILES_PATTERN, COMMENT_PREFIX
 
 
 logger = logging.getLogger(__name__)

@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
-from .core import gen_the_needed_files_list, bench_copy, VERSION, TARGET_FILES_PATTERN
+from .core import gen_the_needed_files_list, bench_copy
+from .meta import VERSION, TARGET_FILES_PATTERN
 from argparse import ArgumentParser
 from myfind.core import MATCHED_FILE_NAME, find_matched_file_paths
 import logging
